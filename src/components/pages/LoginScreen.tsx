@@ -4,6 +4,7 @@ import { useForm, FormProvider, SubmitHandler, SubmitErrorHandler, FieldValues }
 import { useState } from 'react';
 import { useAppDispatch } from '../../redux/store';
 import { loginSuccess } from '../../redux/slice/authSlice';
+import { login } from '../../services/authServices/authService';
 
 type FormErrors = { email?: string, password?: string };
 
@@ -14,8 +15,12 @@ const LoginScreen = () => {
     const [response, setResponse] = useState<undefined | { status: string }>(undefined);
     const { ...methods } = useForm();
 
-    const onSubmit: SubmitHandler<FieldValues> = ((data) => {
-        // dispatch(loginSuccess({ token: user.token, refreshToken: user.refreshToken }));
+    const onSubmit: SubmitHandler<FieldValues> = (async (data) => {
+        const auth = await login(data.email, data.password);
+        console.log('====================================');
+        console.log(auth);
+        console.log('====================================');
+        // dispatch(loginSuccess(auth));
         console.log(data);
         setErrors(undefined)
         setResponse({ status: 'success' });

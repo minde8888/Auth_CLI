@@ -61,12 +61,18 @@ buck-out/
 
 # Ruby / CocoaPods
 /ios/Pods/
+/ios
+
+/android
+
+/image
 /vendor/bundle/
+
 .buckconfig
 .eslintrc.js
 .prettierrc.js
 .ruby-version
 .watchmanconfig
 *.json
-\ios
-\android
+
+
