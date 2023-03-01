@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useAppDispatch } from '../../redux/store';
 import { loginSuccess } from '../../redux/slice/authSlice';
 import { login } from '../../services/authServices/authService';
+import { GoogleSignIn } from '../auth/google/GoogleSignIn';
 
 type FormErrors = { email?: string, password?: string };
 
@@ -17,9 +18,6 @@ const LoginScreen = () => {
 
     const onSubmit: SubmitHandler<FieldValues> = (async (data) => {
         const auth = await login(data.email, data.password);
-        console.log('====================================');
-        console.log(auth);
-        console.log('====================================');
         // dispatch(loginSuccess(auth));
         console.log(data);
         setErrors(undefined)
@@ -81,6 +79,9 @@ const LoginScreen = () => {
                     onPress={methods.handleSubmit(onSubmit, onError)}
                     disabled={response !== undefined}
                 />
+            </View>
+            <View>
+                <GoogleSignIn />
             </View>
         </View>
     );
